@@ -22,8 +22,18 @@ resetButton.addEventListener('click', function() {
   const squares = document.querySelectorAll('.square');
   squares.forEach(square => {
     square.classList.remove('drawn');
+    square.style.backgroundColor = 'white';
   });
 });
+
+function getRandomColor() {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
 
 function createGrid(squaresPerSide) {
   const container = document.getElementById('container');
@@ -41,6 +51,7 @@ function createGrid(squaresPerSide) {
     square.style.height = squareSize + 'px';
     
     square.addEventListener('mouseenter', function() {
+      square.style.backgroundColor = getRandomColor();
       square.classList.add('drawn');
     });
     
